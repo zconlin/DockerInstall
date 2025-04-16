@@ -38,13 +38,13 @@ fi
 
 # Remove old and incompatible packages
 echo -e "${info} Removing old and incompatible packages..."
-for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt-get remove -y $pkg >/dev/null; done
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt remove -y $pkg >/dev/null; done
 
 # Install dependencies
 echo -e "${info} Updating repositories..."
-apt-get update >/dev/null
+apt update >/dev/null
 echo -e "${info} Installing dependencies..."
-apt-get install -y ca-certificates curl gnupg >/dev/null
+apt install -y ca-certificates curl gnupg >/dev/null
 
 # Add GPG key
 install -m 0755 -d /etc/apt/keyrings
@@ -58,9 +58,9 @@ echo -e "${msg} Added Docker's stable repository"
 
 # Install Docker
 echo -e "${info} Updating repositories..."
-apt-get update >/dev/null
+apt update >/dev/null
 echo -e "${info} Installing Docker and Docker compose (this might take a while)..."
-apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin >/dev/null &&
+apt install -y docker-ce docker-ce-cli docker-compose containerd.io docker-buildx-plugin docker-compose-plugin >/dev/null &&
 echo -e "${msg} Docker successfully installed: \033[0;32m$(docker --version)\033[m"
 
 # Create Docker user
